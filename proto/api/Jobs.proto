@@ -1,0 +1,62 @@
+syntax = "proto3";
+
+option go_package = "github.com/ag-computational-bio/bakta-web-api/go/api";
+
+service BaktaJobs {
+    rpc InitJob(InitJobRequest) returns (InitJobResponse) {}
+    rpc StartJob(JobAuth) returns (Empty)  {}
+    rpc GetJobsStatus(JobStatusRequestList) returns (JobStatusReponseList) {}
+    rpc GetJobResult(JobAuth) returns (JobResultResponse) {}
+}
+
+message InitJobRequest {
+    bool hasProdigalFile = 1;
+}
+
+message InitJobResponse {
+    string uploadLinkFasta = 1;
+    string uploadLinkProdigal = 2;
+    string secret = 3;
+    JobAuth job = 4;
+}
+
+message StartJobRequest {
+    string jobID = 1;
+    string secret = 2;
+    JobConfig confiig = 3;
+}
+
+message JobConfig {
+}
+
+message JobStatusReponseList {
+    repeated JobStatusResponse jobs = 1;
+}
+
+message JobStatusResponse {
+    string jobID = 1;
+    JobStatusEnum jobStatus = 2; 
+}
+
+message JobResultResponse {
+    string jobID = 1;
+    string resultLink = 2;
+}
+
+message JobStatusRequestList {
+    repeated JobAuth jobs = 1;
+}
+
+message JobAuth {
+    string secret = 1;
+    string jobID = 2;
+}
+
+message Empty{}
+
+enum JobStatusEnum {
+    INIT = 0;
+    RUNNING = 1;
+    SUCCESFULL = 2;
+    ERROR = 3;
+}
