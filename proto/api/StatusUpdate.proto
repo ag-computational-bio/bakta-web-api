@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+option go_package = "github.com/ag-computational-bio/bakta-web-api/go/api";
+
+import "proto/api/Jobs.proto";
+
+service BaktaStatusUpdate {
+    rpc UpdateStatus(UpdateStatusRequest) returns (Empty);
+}
+
+message UpdateStatusRequest {
+    string jobID = 1;
+    string secret = 2;
+    JobStatusEnum status = 3; 
+    string Error = 4;
+}
