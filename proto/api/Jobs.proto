@@ -14,16 +14,15 @@ message InitJobRequest {
 }
 
 message InitJobResponse {
-    string uploadLinkFasta = 1;
-    string uploadLinkProdigal = 2;
-    string secret = 3;
-    JobAuth job = 4;
+   string uploadLinkFasta = 1;
+   string uploadLinkProdigal = 2;
+   JobAuth job = 4;
 }
 
 message StartJobRequest {
     string jobID = 1;
     string secret = 2;
-    JobConfig confiig = 3;
+    JobConfig config = 3;
 }
 
 message JobConfig {
