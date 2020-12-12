@@ -18,7 +18,7 @@ const _ = grpc.SupportPackageIsVersion7
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type BaktaJobsClient interface {
 	InitJob(ctx context.Context, in *InitJobRequest, opts ...grpc.CallOption) (*InitJobResponse, error)
-	StartJob(ctx context.Context, in *JobAuth, opts ...grpc.CallOption) (*Empty, error)
+	StartJob(ctx context.Context, in *StartJobRequest, opts ...grpc.CallOption) (*Empty, error)
 	GetJobsStatus(ctx context.Context, in *JobStatusRequestList, opts ...grpc.CallOption) (*JobStatusReponseList, error)
 	GetJobResult(ctx context.Context, in *JobAuth, opts ...grpc.CallOption) (*JobResultResponse, error)
 }
@@ -40,7 +40,7 @@ func (c *baktaJobsClient) InitJob(ctx context.Context, in *InitJobRequest, opts 
 	return out, nil
 }
 
-func (c *baktaJobsClient) StartJob(ctx context.Context, in *JobAuth, opts ...grpc.CallOption) (*Empty, error) {
+func (c *baktaJobsClient) StartJob(ctx context.Context, in *StartJobRequest, opts ...grpc.CallOption) (*Empty, error) {
 	out := new(Empty)
 	err := c.cc.Invoke(ctx, "/BaktaJobs/StartJob", in, out, opts...)
 	if err != nil {
@@ -72,7 +72,7 @@ func (c *baktaJobsClient) GetJobResult(ctx context.Context, in *JobAuth, opts ..
 // for forward compatibility
 type BaktaJobsServer interface {
 	InitJob(context.Context, *InitJobRequest) (*InitJobResponse, error)
-	StartJob(context.Context, *JobAuth) (*Empty, error)
+	StartJob(context.Context, *StartJobRequest) (*Empty, error)
 	GetJobsStatus(context.Context, *JobStatusRequestList) (*JobStatusReponseList, error)
 	GetJobResult(context.Context, *JobAuth) (*JobResultResponse, error)
 	mustEmbedUnimplementedBaktaJobsServer()
@@ -85,7 +85,7 @@ type UnimplementedBaktaJobsServer struct {
 func (UnimplementedBaktaJobsServer) InitJob(context.Context, *InitJobRequest) (*InitJobResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method InitJob not implemented")
 }
-func (UnimplementedBaktaJobsServer) StartJob(context.Context, *JobAuth) (*Empty, error) {
+func (UnimplementedBaktaJobsServer) StartJob(context.Context, *StartJobRequest) (*Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method StartJob not implemented")
 }
 func (UnimplementedBaktaJobsServer) GetJobsStatus(context.Context, *JobStatusRequestList) (*JobStatusReponseList, error) {
@@ -126,7 +126,7 @@ func _BaktaJobs_InitJob_Handler(srv interface{}, ctx context.Context, dec func(i
 }
 
 func _BaktaJobs_StartJob_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(JobAuth)
+	in := new(StartJobRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -138,7 +138,7 @@ func _BaktaJobs_StartJob_Handler(srv interface{}, ctx context.Context, dec func(
 		FullMethod: "/BaktaJobs/StartJob",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(BaktaJobsServer).StartJob(ctx, req.(*JobAuth))
+		return srv.(BaktaJobsServer).StartJob(ctx, req.(*StartJobRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }

@@ -4,13 +4,12 @@ option go_package = "github.com/ag-computational-bio/bakta-web-api/go/api";
 
 service BaktaJobs {
     rpc InitJob(InitJobRequest) returns (InitJobResponse) {}
-    rpc StartJob(JobAuth) returns (Empty)  {}
+    rpc StartJob(StartJobRequest) returns (Empty)  {}
     rpc GetJobsStatus(JobStatusRequestList) returns (JobStatusReponseList) {}
     rpc GetJobResult(JobAuth) returns (JobResultResponse) {}
 }
 
 message InitJobRequest {
-    bool hasProdigalFile = 1;
 }
 
 message InitJobResponse {
@@ -21,9 +20,8 @@ message InitJobResponse {
 }
 
 message StartJobRequest {
-    string jobID = 1;
-    string secret = 2;
-    JobConfig config = 3;
+    JobAuth job = 1;
+    JobConfig config = 2;
 }
 
 message JobConfig {
