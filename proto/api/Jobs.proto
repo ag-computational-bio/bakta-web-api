@@ -16,6 +16,7 @@ message InitJobRequest {
 message InitJobResponse {
    string uploadLinkFasta = 1;
    string uploadLinkProdigal = 2;
+   string uploadLinkReplicons = 3;
    JobAuth job = 4;
 }
 
