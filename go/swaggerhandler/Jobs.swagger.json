@@ -313,7 +313,7 @@
   "securityDefinitions": {
     "ApiKeyAuth": {
       "type": "apiKey",
-      "name": "Grpc-Metadata-token",
+      "name": "Authorization",
       "in": "header"
     }
   },
