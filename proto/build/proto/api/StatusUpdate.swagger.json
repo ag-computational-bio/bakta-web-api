@@ -15,16 +15,6 @@
     "Empty": {
       "type": "object"
     },
-    "JobStatusEnum": {
-      "type": "string",
-      "enum": [
-        "INIT",
-        "RUNNING",
-        "SUCCESFULL",
-        "ERROR"
-      ],
-      "default": "INIT"
-    },
     "protobufAny": {
       "type": "object",
       "properties": {

@@ -10,7 +10,4 @@ service BaktaStatusUpdate {
 
 message UpdateStatusRequest {
     string jobID = 1;
-    string secret = 2;
-    JobStatusEnum status = 3; 
-    string Error = 4;
 }
