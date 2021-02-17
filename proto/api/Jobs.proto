@@ -3,6 +3,8 @@ syntax = "proto3";
 option go_package = "github.com/ag-computational-bio/bakta-web-api/go/api";
 
 import "google/api/annotations.proto";
+import "google/protobuf/struct.proto";
+
 import "protoc/gateway/options/annotations.proto";
 
 
@@ -64,7 +66,7 @@ message JobStatusResponse {
 
 message JobResultResponse {
     string jobID = 1;
-    string resultLink = 2;
+    google.protobuf.Struct ResultFiles = 2;
 }
 
 message JobStatusRequestList {
