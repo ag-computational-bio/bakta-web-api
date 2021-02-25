@@ -35,9 +35,20 @@ service BaktaJobs {
             body: "*"
         };
     }
+
+    rpc Version(Empty) returns (VersionResponse) {
+        option (google.api.http) = {
+            get: "/api/v1/version"
+        };
+    }
 }
 
 message InitJobRequest {
+}
+
+message VersionResponse {
+    string toolVersion = 1;
+    string dbVersion = 2;
 }
 
 message InitJobResponse {

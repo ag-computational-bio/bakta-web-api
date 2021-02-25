@@ -171,6 +171,35 @@
           "BaktaJobs"
         ]
       }
+    },
+    "/api/v1/version": {
+      "get": {
+        "operationId": "BaktaJobs_Version",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/VersionResponse"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "type": "string",
+              "format": "string"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "BaktaJobs"
+        ]
+      }
     }
   },
   "definitions": {
@@ -273,6 +302,17 @@
         },
         "config": {
           "$ref": "#/definitions/JobConfig"
+        }
+      }
+    },
+    "VersionResponse": {
+      "type": "object",
+      "properties": {
+        "toolVersion": {
+          "type": "string"
+        },
+        "dbVersion": {
+          "type": "string"
         }
       }
     },

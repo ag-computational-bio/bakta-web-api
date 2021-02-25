@@ -21,6 +21,7 @@ type BaktaJobsClient interface {
 	StartJob(ctx context.Context, in *StartJobRequest, opts ...grpc.CallOption) (*Empty, error)
 	GetJobsStatus(ctx context.Context, in *JobStatusRequestList, opts ...grpc.CallOption) (*JobStatusReponseList, error)
 	GetJobResult(ctx context.Context, in *JobAuth, opts ...grpc.CallOption) (*JobResultResponse, error)
+	Version(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*VersionResponse, error)
 }
 
 type baktaJobsClient struct {
@@ -67,6 +68,15 @@ func (c *baktaJobsClient) GetJobResult(ctx context.Context, in *JobAuth, opts ..
 	return out, nil
 }
 
+func (c *baktaJobsClient) Version(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*VersionResponse, error) {
+	out := new(VersionResponse)
+	err := c.cc.Invoke(ctx, "/BaktaJobs/Version", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // BaktaJobsServer is the server API for BaktaJobs service.
 // All implementations must embed UnimplementedBaktaJobsServer
 // for forward compatibility
@@ -75,6 +85,7 @@ type BaktaJobsServer interface {
 	StartJob(context.Context, *StartJobRequest) (*Empty, error)
 	GetJobsStatus(context.Context, *JobStatusRequestList) (*JobStatusReponseList, error)
 	GetJobResult(context.Context, *JobAuth) (*JobResultResponse, error)
+	Version(context.Context, *Empty) (*VersionResponse, error)
 	mustEmbedUnimplementedBaktaJobsServer()
 }
 
@@ -93,6 +104,9 @@ func (UnimplementedBaktaJobsServer) GetJobsStatus(context.Context, *JobStatusReq
 }
 func (UnimplementedBaktaJobsServer) GetJobResult(context.Context, *JobAuth) (*JobResultResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetJobResult not implemented")
+}
+func (UnimplementedBaktaJobsServer) Version(context.Context, *Empty) (*VersionResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Version not implemented")
 }
 func (UnimplementedBaktaJobsServer) mustEmbedUnimplementedBaktaJobsServer() {}
 
@@ -179,6 +193,24 @@ func _BaktaJobs_GetJobResult_Handler(srv interface{}, ctx context.Context, dec f
 	return interceptor(ctx, in, info, handler)
 }
 
+func _BaktaJobs_Version_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BaktaJobsServer).Version(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/BaktaJobs/Version",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BaktaJobsServer).Version(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _BaktaJobs_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "BaktaJobs",
 	HandlerType: (*BaktaJobsServer)(nil),
@@ -198,6 +230,10 @@ var _BaktaJobs_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetJobResult",
 			Handler:    _BaktaJobs_GetJobResult_Handler,
+		},
+		{
+			MethodName: "Version",
+			Handler:    _BaktaJobs_Version_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
