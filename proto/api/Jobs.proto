@@ -49,6 +49,7 @@ message InitJobRequest {
 message VersionResponse {
     string toolVersion = 1;
     string dbVersion = 2;
+    string backendVersion = 3;
 }
 
 message InitJobResponse {

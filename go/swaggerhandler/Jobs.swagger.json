@@ -316,6 +316,9 @@
         },
         "dbVersion": {
           "type": "string"
+        },
+        "backendVersion": {
+          "type": "string"
         }
       }
     },
