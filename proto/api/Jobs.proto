@@ -61,6 +61,7 @@ message InitJobResponse {
 message StartJobRequest {
     JobAuth job = 1;
     JobConfig config = 2;
+    string jobConfigString = 3;
 }
 
 message JobConfig {

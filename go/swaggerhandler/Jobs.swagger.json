@@ -302,6 +302,9 @@
         },
         "config": {
           "$ref": "#/definitions/JobConfig"
+        },
+        "jobConfigString": {
+          "type": "string"
         }
       }
     },
