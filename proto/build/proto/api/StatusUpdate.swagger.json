@@ -4,6 +4,11 @@
     "title": "proto/api/StatusUpdate.proto",
     "version": "version not set"
   },
+  "tags": [
+    {
+      "name": "BaktaStatusUpdate"
+    }
+  ],
   "consumes": [
     "application/json"
   ],

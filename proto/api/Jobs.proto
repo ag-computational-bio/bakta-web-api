@@ -4,6 +4,7 @@ option go_package = "github.com/ag-computational-bio/bakta-web-api/go/api";
 
 import "google/api/annotations.proto";
 import "google/protobuf/struct.proto";
+import "google/protobuf/timestamp.proto";
 
 import "protoc/gateway/options/annotations.proto";
 
@@ -74,12 +75,16 @@ message JobStatusReponseList {
 
 message JobStatusResponse {
     string jobID = 1;
-    JobStatusEnum jobStatus = 2; 
+    JobStatusEnum jobStatus = 2;
+    google.protobuf.Timestamp started = 3;
+    google.protobuf.Timestamp updated = 4;
 }
 
 message JobResultResponse {
     string jobID = 1;
     google.protobuf.Struct ResultFiles = 2;
+    google.protobuf.Timestamp started = 3;
+    google.protobuf.Timestamp updated = 4;
 }
 
 message JobStatusRequestList {
