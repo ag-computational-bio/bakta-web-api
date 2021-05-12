@@ -67,6 +67,8 @@ message StartJobRequest {
 }
 
 message JobConfig {
+    bool hasProdigal = 1;
+    bool hasReplicons = 2;
 }
 
 message JobStatusReponseList {
@@ -101,7 +103,7 @@ message Empty{}
 enum JobStatusEnum {
     INIT = 0;
     RUNNING = 1;
-    SUCCESFULL = 2;
+    SUCCESSFULL = 2;
     ERROR = 3;
 }
 
