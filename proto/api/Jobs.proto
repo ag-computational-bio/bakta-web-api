@@ -45,6 +45,7 @@ service BaktaJobs {
 }
 
 message InitJobRequest {
+    RepliconTableType repliconTableType = 1;
 }
 
 message VersionResponse {
@@ -69,7 +70,18 @@ message StartJobRequest {
 message JobConfig {
     bool hasProdigal = 1;
     bool hasReplicons = 2;
+    int32 translationalTable = 3;
+    bool completeGenome = 4;
+    bool keepContigHeaders = 5;
+    int64 minContigLength = 6;
+    DermType dermType = 7;
+    string genus = 8;
+    string species = 9;
+    string strain = 10;
+    string locus = 11;
+    string locus_tag = 12;
 }
+
 
 message JobStatusReponseList {
     repeated JobStatusResponse jobs = 1;
@@ -99,6 +111,17 @@ message JobAuth {
 }
 
 message Empty{}
+
+enum DermType {
+    UNKNOWN = 0;
+    monoderm = 1;
+    diderm = 2;
+}
+
+enum RepliconTableType {
+    csv = 0;
+    tsv = 1;
+}
 
 enum JobStatusEnum {
     INIT = 0;
