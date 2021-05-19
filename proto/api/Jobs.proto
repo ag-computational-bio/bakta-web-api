@@ -78,8 +78,9 @@ message JobConfig {
     string genus = 8;
     string species = 9;
     string strain = 10;
-    string locus = 11;
-    string locus_tag = 12;
+    string plasmid = 11;
+    string locus = 12;
+    string locus_tag = 13;
 }
 
 
