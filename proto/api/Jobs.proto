@@ -46,6 +46,7 @@ service BaktaJobs {
 
 message InitJobRequest {
     RepliconTableType repliconTableType = 1;
+    string name = 2;
 }
 
 message VersionResponse {
@@ -94,6 +95,7 @@ message JobStatusResponse {
     JobStatusEnum jobStatus = 2;
     google.protobuf.Timestamp started = 3;
     google.protobuf.Timestamp updated = 4;
+    string name = 5;
 }
 
 message JobResultResponse {
@@ -101,6 +103,7 @@ message JobResultResponse {
     google.protobuf.Struct ResultFiles = 2;
     google.protobuf.Timestamp started = 3;
     google.protobuf.Timestamp updated = 4;
+    string name = 5;
 }
 
 message JobStatusRequestList {
