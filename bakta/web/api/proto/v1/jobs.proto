@@ -23,14 +23,14 @@ service BaktaJobs {
             body: "*"
         };
     }
-    rpc GetJobsStatus(JobStatusRequestList) returns (JobStatusReponseList) {
+    rpc JobsStatus(JobStatusRequestList) returns (JobStatusReponseList) {
         option (google.api.http) = {
             post: "/api/v1/job/list"
             body: "*"
         };
     }
 
-    rpc GetJobResult(JobAuth) returns (JobResultResponse) {
+    rpc JobResult(JobAuth) returns (JobResultResponse) {
         option (google.api.http) = {
             post: "/api/v1/job/result"
             body: "*"
