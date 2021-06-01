@@ -42,6 +42,12 @@ service BaktaJobs {
             get: "/api/v1/version"
         };
     }
+
+    rpc Delete(JobAuth) returns (Empty) {
+        option (google.api.http) = {
+            get: "/api/v1/delete"
+        };
+    }
 }
 
 message InitJobRequest {
