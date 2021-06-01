@@ -1,0 +1,16 @@
+name: Docker
+
+on: [push]
+
+jobs:
+  # Run tests.
+  # See also https://docs.docker.com/docker-hub/builds/automated-testing/
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Run linting
+        run: |
+          docker build -t buflinter . --file Dockerfile && docker run buflinter

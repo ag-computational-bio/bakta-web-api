@@ -1,13 +1,13 @@
 syntax = "proto3";
 
+package bakta.web.api.proto.v1;
 option go_package = "github.com/ag-computational-bio/bakta-web-api/go/api";
 
-import "google/api/annotations.proto";
 import "google/protobuf/struct.proto";
 import "google/protobuf/timestamp.proto";
+import "google/api/annotations.proto";
 
-import "protoc/gateway/options/annotations.proto";
-
+import "grpc/gateway/protoc_gen_openapiv2/options/annotations.proto";
 
 service BaktaJobs {
     rpc InitJob(InitJobRequest) returns (InitJobResponse) {
@@ -129,13 +129,13 @@ message Empty{}
 
 enum DermType {
     UNKNOWN = 0;
-    monoderm = 1;
-    diderm = 2;
+    MONODERM = 1;
+    DIDERM = 2;
 }
 
 enum RepliconTableType {
-    csv = 0;
-    tsv = 1;
+    CSV = 0;
+    TSV = 1;
 }
 
 enum JobStatusEnum {
@@ -145,7 +145,7 @@ enum JobStatusEnum {
     ERROR = 3;
 }
 
-option (grpc.gateway.protoc_gen_swagger.options.openapiv2_swagger) = {
+option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
     info: {
         title: "Bakta Jobs API"
         version: "0.1"

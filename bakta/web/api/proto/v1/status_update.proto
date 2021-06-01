@@ -1,8 +1,9 @@
 syntax = "proto3";
+package bakta.web.api.proto.v1;
 
 option go_package = "github.com/ag-computational-bio/bakta-web-api/go/api";
 
-import "proto/api/Jobs.proto";
+import "bakta/web/api/proto/v1/jobs.proto";
 
 service BaktaStatusUpdate {
     rpc UpdateStatus(UpdateStatusRequest) returns (Empty);
