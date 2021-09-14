@@ -71,7 +71,6 @@ message InitJobResponse {
 message StartJobRequest {
     JobAuth job = 1;
     JobConfig config = 2;
-    string jobConfigString = 3;
 }
 
 message JobConfig {
@@ -88,6 +87,7 @@ message JobConfig {
     string plasmid = 11;
     string locus = 12;
     string locus_tag = 13;
+    bool hasCompliant = 14;
 }
 
 
