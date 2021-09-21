@@ -87,7 +87,7 @@ message JobConfig {
     string plasmid = 11;
     string locus = 12;
     string locus_tag = 13;
-    bool hasCompliant = 14;
+    bool compliant = 14;
 }
 
 
